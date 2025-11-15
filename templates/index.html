@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Titanic Survival Predictor</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            background-color: #4CAF50;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .result {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #f0f0f0;
+            border-radius: 5px;
+        }
+    </style>
+</head>
+<body>
+    <h1>Titanic Survival Predictor</h1>
+    <form action="/predict" method="post">
+        <label for="passenger_id">Passenger ID:</label>
+        <input type="number" id="passenger_id" name="passenger_id" required>
+
+        <label for="pclass">Passenger Class (1, 2, or 3):</label>
+        <input type="number" id="pclass" name="pclass" min="1" max="3" required>
+
+        <label for="sex">Gender (0 for male, 1 for female):</label>
+        <input type="number" id="sex" name="sex" min="0" max="1" required>
+
+        <label for="age">Age:</label>
+        <input type="number" id="age" name="age" step="0.01" required>
+
+        <label for="sibsp">Number of siblings/spouses aboard:</label>
+        <input type="number" id="sibsp" name="sibsp" required>
+
+        <label for="parch">Number of parents/children aboard:</label>
+        <input type="number" id="parch" name="parch" required>
+
+        <label for="fare">Fare:</label>
+        <input type="number" id="fare" name="fare" step="0.01" required>
+
+        <label for="embarked">Embarked (1 for C, 0 for Q, 2 for S):</label>
+        <input type="number" id="embarked" name="embarked" min="0" max="2" required>
+
+        <button type="submit">Predict Survival</button>
+    </form>
+
+    {% if prediction %}
+    <div class="result">
+        <h2>Prediction Result:</h2>
+        <p>{{ prediction }}</p>
+    </div>
+    {% endif %}
+</body>
+</html>
